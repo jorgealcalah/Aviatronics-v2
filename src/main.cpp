@@ -17,7 +17,7 @@ void setup()
 
   previous_time = micros();
 }
-
+//comentario prueba
 void loop()
 {
   elapsed_time = micros() - previous_time;
