@@ -13,7 +13,7 @@ bool UAV::begin()
     // cambiar a ! para mas corto
     Serial.println("Comenzando");
     delay(500);
-    if (bno.begin() == false) // && bno.begin() == false)
+    if (!bno.begin()) // && bno.begin() == false)
         return false;
     // cambiar a or para saber qué cosa falló
     else
