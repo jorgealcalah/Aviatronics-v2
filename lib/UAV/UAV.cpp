@@ -10,7 +10,6 @@ UAV::~UAV()
 bool UAV::begin()
 {
     Wire.begin(21, 22);
-    // cambiar a ! para mas corto
     Serial.println("Comenzando");
     delay(500);
     if (!bno.begin()) // && bno.begin() == false)
