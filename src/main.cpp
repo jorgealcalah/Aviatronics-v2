@@ -1,7 +1,5 @@
 #include <UAVincludes.h>
 
-uint32_t dt = 100000;
-
 //cambiar a interrupciones, en vez de hacer poleo de tiempo
 ulong previous_time;
 uint32_t elapsed_time;
