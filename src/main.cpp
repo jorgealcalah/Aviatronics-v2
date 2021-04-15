@@ -7,7 +7,7 @@ uint32_t elapsed_time;
 void setup()
 {
   communication.begin();
-  while (!uav.begin())
+  while (!Wire.begin())
   {
     Serial.print("Sensors failed");
     delay(500);
