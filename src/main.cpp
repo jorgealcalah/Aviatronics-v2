@@ -12,16 +12,16 @@ void setup()
     Serial.print("Sensors failed");
     delay(500);
   }
-
-  previous_time = micros();
+  communication.initializeIMU();
+  previous_time = millis();
 }
 //comentario prueba
 void loop()
 {
-  elapsed_time = micros() - previous_time;
-  if (elapsed_time > dt)
+  elapsed_time = millis() - previous_time;
+  if (elapsed_time > dt_n) //cambiar esta variable de dt_n
   {
-    previous_time = micros();
+    previous_time = millis();
     uav.readSensors();
     communication.sendData(uav.gps_data, 8);
     // communication.sendData(uav.imu_data, 3);
