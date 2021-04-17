@@ -10,7 +10,7 @@ public:
     IMU imu_080;
     Baro baro;
     void begin();
-    void initializeIMU();
+    void initializeSensors();
     void sendData(double data[], uint8_t decimals);
     bool available();
     float updated_parameters[4];

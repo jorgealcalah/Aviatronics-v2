@@ -4,8 +4,6 @@
 #define ADDR_PIN 17
 const byte LED_PIN = 15;
 BluetoothSerial SerialBT;
-//IMU imu_080;
-//Baro baro;
 bool imu_data[] = {false, true, true, false, false, false};
 bool baro_data[] = {false, true, false};
 uint16_t dt = 20;
@@ -28,7 +26,7 @@ void Communications::begin()
     digitalWrite(LED_PIN, LOW);
 }
 
-void Communications::initializeIMU()
+void Communications::initializeSensors()
 {
     imu_080.begin(IMU_ADDR1, dt, imu_data);
     baro.begin(BARO_ADDR2, baro_data);

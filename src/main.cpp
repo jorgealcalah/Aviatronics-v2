@@ -12,7 +12,7 @@ void setup()
     Serial.print("Sensors failed");
     delay(500);
   }
-  communication.initializeIMU();
+  communication.initializeSensors();
   previous_time = millis();
 }
 //comentario prueba
