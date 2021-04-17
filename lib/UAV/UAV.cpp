@@ -19,7 +19,7 @@ bool UAV::begin()
         return true;
 }
 
-void UAV::readSensors()
+void UAV::read_Sensors()
 {
     while (i2cgps.available())
     {

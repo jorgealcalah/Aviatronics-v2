@@ -4,8 +4,8 @@
 #define ADDR_PIN 17
 const byte LED_PIN = 15;
 BluetoothSerial SerialBT;
-IMU imu_080;
-Baro baro;
+//IMU imu_080;
+//Baro baro;
 bool imu_data[] = {false, true, true, false, false, false};
 bool baro_data[] = {false, true, false};
 uint16_t dt = 20;

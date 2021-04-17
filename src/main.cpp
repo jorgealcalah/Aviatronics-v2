@@ -22,7 +22,7 @@ void loop()
   if (elapsed_time > dt_n) //cambiar esta variable de dt_n
   {
     previous_time = millis();
-    uav.readSensors();
+    uav.read_Sensors();
     communication.sendData(uav.gps_data, 8);
     // communication.sendData(uav.imu_data, 3);
     uav.calculateControl();

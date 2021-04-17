@@ -13,7 +13,7 @@ public:
     Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
     bool begin();
 
-    void readSensors();
+    void read_Sensors();
 
     double gps_data[3];
     double imu_data[6];
