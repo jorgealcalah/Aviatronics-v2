@@ -2,6 +2,7 @@
 #include <Adafruit_BNO055.h>
 #include <TinyGPS++.h>
 #include <Wire.h>
+#include <MessageUtilities.h>
 class UAV
 {
 public:
