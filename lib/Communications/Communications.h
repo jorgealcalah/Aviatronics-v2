@@ -20,7 +20,8 @@ public:
     Baro baro;
     void begin();
     void initializeSensors();
-    void sendData(double data[], uint8_t decimals);
+    void sendData();
+    void checkDataIMU();
     bool available();
     float imu_measurements[6];
     float baro_measurements[1];

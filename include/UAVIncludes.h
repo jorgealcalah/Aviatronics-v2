@@ -14,8 +14,8 @@ Communications communication;
 
 
 //const byte LED_PIN = 15;
-uint16_t dt_n = 20;
-uint16_t blink_period = 500;
+uint16_t dt_n = 100;
+uint16_t blink_period = 20;
 ulong previous_millis, current_millis;
 /*float imu_measurements[6];
 float baro_measurements[1];

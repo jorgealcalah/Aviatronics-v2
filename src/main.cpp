@@ -1,33 +1,44 @@
 #include <UAVincludes.h>
 
-//cambiar a interrupciones, en vez de hacer poleo de tiempo
-ulong previous_time;
-uint32_t elapsed_time;
+int totalInterruptCounter;
+volatile bool interruptFlag = LOW;
+hw_timer_t *timer = NULL;
+portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 
+void IRAM_ATTR onTimer()
+{
+  portENTER_CRITICAL_ISR(&timerMux);
+  interruptFlag = HIGH;
+  portEXIT_CRITICAL_ISR(&timerMux);
+}
 void setup()
 {
   communication.begin();
+
+  timer = timerBegin(0, 80, true); //se usa el timer 0 (de 4 disponibles), prescaler de 80 MHz, true para que cuente hacia arriba
+  timerAttachInterrupt(timer, &onTimer, true);
+  timerAlarmWrite(timer, 1000, true);
+  timerAlarmEnable(timer);
+
   while (!Wire.begin())
   {
     Serial.print("Sensors failed");
     delay(500);
   }
   communication.initializeSensors();
-  previous_time = millis();
 }
-//comentario prueba
+
 void loop()
 {
-  elapsed_time = millis() - previous_time;
-  if (elapsed_time > dt_n) //cambiar esta variable de dt_n
+  current_millis = millis();
+  if (interruptFlag == HIGH)
   {
-    previous_time = millis();
-    //uav.read_Sensors();
-    //communication.sendData();
-    // communication.sendData(uav.imu_data, 3);
-    uav.calculateControl();
-    uav.applyControl();
+    portENTER_CRITICAL(&timerMux);
+    interruptFlag = LOW;
+    portEXIT_CRITICAL(&timerMux);
+    communication.sendData();
+    //uav.calculateControl();
+    //uav.applyControl();
   }
-  if (communication.available())
-    uav.updateParameters(communication.updated_parameters);
+  communication.checkDataIMU();
 }
