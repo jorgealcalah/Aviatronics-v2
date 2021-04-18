@@ -37,11 +37,11 @@ void Communications::sendData(double data[], uint8_t decimals)
     //preguntar cuantos decimales (8)
     //Serial.printf("%.8f,%.8f,%.2f\n", data[0], data[1], data[2]);
 
-    //baro.readSensors(baro_measurements);
-    //imu.readSensors(imu_measurements);
-    //buildString(baro_measurements, sizeof(baro_measurements) / sizeof(baro_measurements[0]), baro_string, "%.2f,");
-    //buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
-    //Serial.printf("%lu, %s%s\n", millis(), imu_string, baro_string);
+    baro.readSensors(baro_measurements);
+    imu_080.readSensors(imu_measurements);
+    buildString(baro_measurements, sizeof(baro_measurements) / sizeof(baro_measurements[0]), baro_string, "%.2f,");
+    buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
+    Serial.printf("%lu, %s%s\n", millis(), imu_string, baro_string);
 }
 
 bool Communications::available()

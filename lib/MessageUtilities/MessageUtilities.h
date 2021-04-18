@@ -1,15 +1,11 @@
-#ifndef _MESSAGEUTILITIES_h
-#define _MESSAGEUTILITIES_h
-
-#include <Arduino.h>
+#ifndef _MESSAGEUTILITIES_H
+#define _MESSAGEUTILITIES_H
 
 template <typename data>
-void parseString(String string_in, char *delimiter, data output_array[])
+void parseString(char string_in[], const char delimiter[], data output_array[])
 {
-    char str[sizeof(string_in) * 8];               //Create an array to store the input string
-    string_in.toCharArray(str, (sizeof(str) * 8)); //Convert the input data to CharArray
-    char *pch;                                     //create buffer
-    pch = strtok(str, delimiter);                  //begin parsing the values
+    char *pch;
+    pch = strtok(string_in, delimiter);
     byte i = 0;
     while (pch != NULL)
     {
@@ -20,18 +16,16 @@ void parseString(String string_in, char *delimiter, data output_array[])
 }
 
 template <typename data>
-String buildString(data data_to_string[], const char delimiter[], byte decimals = 3)
+void buildString(data data_to_string[], unsigned char number_of_elements, char string_out[], const char format[])
 {
-    String payload = "";
-    byte number_of_elements = sizeof(data_to_string) / sizeof(data_to_string[0]);
-    byte i;
-    for (i = 0; i < number_of_elements; i++)
+    char submessage[12];
+    unsigned char element;
+    strcpy(string_out, "");
+    for (element = 0; element < number_of_elements; element++)
     {
-        payload += String(data_to_string[i], decimals);
-        if (i < number_of_elements)
-            payload += delimiter;
+        snprintf(submessage, sizeof(submessage), format, data_to_string[element]);
+        strcat(string_out, submessage);
     }
-    return payload;
 }
 
-#endif
+#endif // _MESSAGEUTILITIES_H
