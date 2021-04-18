@@ -1,10 +1,5 @@
 #include <UAVincludes.h>
 
-int totalInterruptCounter;
-volatile bool interruptFlag = LOW;
-hw_timer_t *timer = NULL;
-portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
-
 void IRAM_ATTR onTimer()
 {
   portENTER_CRITICAL_ISR(&timerMux);
@@ -14,7 +9,6 @@ void IRAM_ATTR onTimer()
 void setup()
 {
   communication.begin();
-
   timer = timerBegin(0, 80, true); //se usa el timer 0 (de 4 disponibles), prescaler de 80 MHz, true para que cuente hacia arriba
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 1000, true);
