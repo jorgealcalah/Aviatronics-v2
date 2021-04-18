@@ -21,6 +21,7 @@ bool UAV::begin()
 
 void UAV::read_Sensors()
 {
+    /* CÓDIGO PARA EL BNO055 (ya no se usará)
     while (i2cgps.available())
     {
         gps.encode(i2cgps.read());
@@ -43,6 +44,14 @@ void UAV::read_Sensors()
     imu_data[3] = lin_acc.x();
     imu_data[4] = lin_acc.y();
     imu_data[5] = lin_acc.z();
+    */
+   /*
+    baro.readSensors(baro_measurements);
+    //imu.readSensors(imu_measurements);
+    buildString(baro_measurements, sizeof(baro_measurements) / sizeof(baro_measurements[0]), baro_string, "%.2f,");
+    buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
+    Serial.printf("%lu, %s%s\n", millis(), imu_string, baro_string);
+    */
 }
 
 void UAV::calculateControl()

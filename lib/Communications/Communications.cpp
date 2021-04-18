@@ -1,6 +1,5 @@
 #include "Communications.h"
 #include "MessageUtilities.h"
-
 #define ADDR_PIN 17
 const byte LED_PIN = 15;
 BluetoothSerial SerialBT;
@@ -34,9 +33,15 @@ void Communications::initializeSensors()
 }
 void Communications::sendData(double data[], uint8_t decimals)
 {
-    //String payload = buildString(data,",",decimals);
+    //String payload = buildString(data,",",decimals); CÓDIGO ANTIGUO
     //preguntar cuantos decimales (8)
-    Serial.printf("%.8f,%.8f,%.2f\n", data[0], data[1], data[2]);
+    //Serial.printf("%.8f,%.8f,%.2f\n", data[0], data[1], data[2]);
+
+    //baro.readSensors(baro_measurements);
+    //imu.readSensors(imu_measurements);
+    //buildString(baro_measurements, sizeof(baro_measurements) / sizeof(baro_measurements[0]), baro_string, "%.2f,");
+    //buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
+    //Serial.printf("%lu, %s%s\n", millis(), imu_string, baro_string);
 }
 
 bool Communications::available()

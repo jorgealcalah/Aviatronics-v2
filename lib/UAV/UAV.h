@@ -2,7 +2,8 @@
 #include <Adafruit_BNO055.h>
 #include <TinyGPS++.h>
 #include <Wire.h>
-#include <MessageUtilities.h>
+
+
 class UAV
 {
 public:
@@ -16,8 +17,8 @@ public:
 
     void read_Sensors();
 
-    double gps_data[3];
-    double imu_data[6];
+    //double gps_data[3];
+    //double imu_data[6];
     void calculateControl();
     void applyControl();
     void updateParameters(float updated_parameters[]);
