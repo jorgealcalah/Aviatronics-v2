@@ -34,4 +34,5 @@ void loop()
     //uav.applyControl();
   }
   communication.checkDataIMU();
+  communication.displayGPSinfo();
 }
