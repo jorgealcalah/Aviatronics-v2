@@ -24,7 +24,6 @@ void setup()
 
 void loop()
 {
-  current_millis = millis();
   if (interruptFlag == HIGH)
   {
     portENTER_CRITICAL(&timerMux);
