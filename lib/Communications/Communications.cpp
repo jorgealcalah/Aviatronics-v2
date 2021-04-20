@@ -49,6 +49,7 @@ void Communications::sendData()
     buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
     buildString(gps_measurements, sizeof(gps_measurements) / sizeof(gps_measurements[0]), gps_string, "%.6f, ");
     Serial.printf("%lu, %s%s%s\n", millis(), imu_string, baro_string, gps_string);
+    SerialBT.printf("%lu, %s%s%s\n", millis(), imu_string, baro_string, gps_string);
 }
 void Communications::checkDataIMU()
 {
