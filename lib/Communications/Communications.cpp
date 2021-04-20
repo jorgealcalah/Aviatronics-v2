@@ -122,6 +122,7 @@ void Communications::displayGPSinfo()
             byte index_gps = 0;
             gps_measurements[index_gps++] = gps.location.lat();
             gps_measurements[index_gps++] = gps.location.lng();
+            gps_measurements[index_gps++] = gps.speed.mps();
             //Serial.printf("%.6f, %.6f\n", gps_measurements[0], gps_measurements[1]);
         }
     }

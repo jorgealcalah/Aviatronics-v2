@@ -33,9 +33,9 @@ public:
     bool available();
     float imu_measurements[6];
     float baro_measurements[1];
-    float gps_measurements[2];
+    float gps_measurements[3];
     char imu_string[48];
     char baro_string[16];
-    char gps_string[30];
+    char gps_string[40];
     float updated_parameters[4];
 };
