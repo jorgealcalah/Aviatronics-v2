@@ -40,10 +40,6 @@ void Communications::initializeSensors()
 }
 void Communications::sendData()
 {
-    //String payload = buildString(data,",",decimals); CÓDIGO ANTIGUO
-    //preguntar cuantos decimales (8)
-    //Serial.printf("%.8f,%.8f,%.2f\n", data[0], data[1], data[2]);
-
     baro.readSensors(baro_measurements);
     buildString(baro_measurements, sizeof(baro_measurements) / sizeof(baro_measurements[0]), baro_string, "%.2f,");
     buildString(imu_measurements, sizeof(imu_measurements) / sizeof(imu_measurements[0]), imu_string, "%.2f, ");
@@ -60,57 +56,7 @@ void Communications::checkDataIMU()
 }
 void Communications::displayGPSinfo()
 {
-    /*
-    Serial.println();
-
-    if (gps.time.isValid())
-    {
-
-        Serial.print(F("Date: "));
-        Serial.print(gps.date.month());
-        Serial.print(F("/"));
-        Serial.print(gps.date.day());
-        Serial.print(F("/"));
-        Serial.print(gps.date.year());
-
-        Serial.print((" Time: "));
-        if (gps.time.hour() < 10)
-            Serial.print(F("0"));
-        Serial.print(gps.time.hour() - 5);
-        Serial.print(F(":"));
-        if (gps.time.minute() < 10)
-            Serial.print(F("0"));
-        Serial.print(gps.time.minute());
-        Serial.print(F(":"));
-        if (gps.time.second() < 10)
-            Serial.print(F("0"));
-        Serial.print(gps.time.second());
-
-        Serial.println();
-    }
-    else
-    {
-        Serial.println(F("Time not yet valid"));
-    }
-
-    if (gps.location.isValid())
-    {
-
-        Serial.print("Location: ");
-        Serial.print(gps.location.lat(), 6);
-        Serial.print(F(", "));
-        Serial.print(gps.location.lng(), 6);
-        Serial.println();
-
-        byte index_gps = 0;
-        gps_measurements[index_gps++] = gps.location.lat();
-        gps_measurements[index_gps++] = gps.location.lng();
-    }
-    else
-    {
-        Serial.println(F("Location not yet valid"));
-    }
-    */
+    
     while (myI2CGPS.available()) //available() returns the number of new bytes available from the GPS module
     {
         gps.encode(myI2CGPS.read()); //Feed the GPS parser
@@ -124,7 +70,6 @@ void Communications::displayGPSinfo()
             gps_measurements[index_gps++] = gps.location.lat();
             gps_measurements[index_gps++] = gps.location.lng();
             gps_measurements[index_gps++] = gps.speed.mps();
-            //Serial.printf("%.6f, %.6f\n", gps_measurements[0], gps_measurements[1]);
         }
     }
 }
