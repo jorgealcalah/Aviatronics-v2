@@ -13,9 +13,10 @@
 #ifndef SparkFun_I2C_GPS_Arduino_Library_h
 #include <SparkFun_I2C_GPS_Arduino_Library.h>
 #endif
-#ifndef TinyGPS++_h
+#ifndef TinyGPS++ _h
 #include <TinyGPS++.h>
 #endif
+
 class Communications
 {
 public:
@@ -27,10 +28,14 @@ public:
     TinyGPSPlus gps;
     void begin();
     void initializeSensors();
-    void sendData();
-    void checkDataIMU();
+    void sendData(float _rollRef, float _pitchRef);
+    float checkDataIMU();
+    float checkRoll();
+    float checkPitch();
+    float checkYaw();
     void displayGPSinfo();
     bool available();
+
     float imu_measurements[6];
     float baro_measurements[1];
     float gps_measurements[3];
